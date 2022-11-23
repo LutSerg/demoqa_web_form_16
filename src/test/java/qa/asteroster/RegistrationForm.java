@@ -1,5 +1,6 @@
 package qa.asteroster;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -41,6 +42,23 @@ public class RegistrationForm {
      $("#city").click();
      $("#stateCity-wrapper").$(byText("Gurgaon")).click();
      $("#submit").click();
+
+     $(".modal-header").shouldHave(Condition.text("Thanks for submitting the form"));
+     $(".table-responsive").shouldHave(Condition.text("Bilbo Baggins"));
+     $(".table-responsive").shouldHave(Condition.text("hobbit@shire.nz"));
+     $(".table-responsive").shouldHave(Condition.text("9998887755"));
+     $$(".table-responsive").find(Condition.text("Gender"))
+             .shouldHave(Condition.text("Male"));
+     $$(".table-responsive").find(Condition.text("Date of Birth"))
+             .shouldHave(Condition.text("10 May,1990"));
+     $$(".table-responsive").find(Condition.text("Subjects"))
+             .shouldHave(Condition.text("History"));
+     $$(".table-responsive").find(Condition.text("Hobbies"))
+             .shouldHave(Condition.text("Reading"));
+     $$(".table-responsive").find(Condition.text("Address"))
+             .shouldHave(Condition.text("Some text for some address"));
+        $$(".table-responsive").find(Condition.text("State and City"))
+                .shouldHave(Condition.text("NCR Gurgaon"));
     }
 
 }
