@@ -15,16 +15,17 @@ public class RegistrationForm extends TestBase {
 
     @Test
     void registrationFormTest() {
-     String userName = "Bilbo";
-     String userLastName = "Baggins";
-     String email = "hobbit@shire.nz";
-     String gender = "Male";
-     String phoneNumber = "9998887755";
-     String subject = "history";
-     String hobbies = "Reading";
-     String address = "Some text for some address";
-     String state = "NCR";
-     String city = "Gurgaon";
+     String userName = "Bilbo",
+            userLastName = "Baggins",
+            email = "hobbit@shire.nz",
+            gender = "Male",
+            phoneNumber = "9998887755",
+            subject = "history",
+            hobbies = "Reading",
+            address = "Some text for some address",
+            state = "NCR",
+            city = "Gurgaon",
+            photo = "1.jpg";
 
      registrationFormPage.openPage()
             .setFirstName(userName)
@@ -35,7 +36,7 @@ public class RegistrationForm extends TestBase {
             .setBirthDate("10", "May", "1990")
             .setSubject(subject)
             .setHobbie(hobbies)
-            .uploadPhoto()
+            .uploadPhoto(photo)
             .setAddress(address)
             .setState(state)
             .setCity(city)

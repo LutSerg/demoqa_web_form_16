@@ -98,8 +98,8 @@ public class RegistrationFormPage {
         return this;
     }
 
-    public RegistrationFormPage uploadPhoto() {
-        pictureInput.uploadFromClasspath("1.jpg");
+    public RegistrationFormPage uploadPhoto(String value) {
+        pictureInput.uploadFromClasspath(value);
 
         return this;
     }
