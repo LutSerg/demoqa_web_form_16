@@ -4,17 +4,24 @@ import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 
+import java.util.Locale;
+import java.util.Random;
+
 public class RegistrationFormWithFaker extends TestBase {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
     @Test
     void registrationFormTest() {
         Faker faker = new Faker();
+
         String userName = faker.name().firstName(),
                 userLastName = faker.name().lastName(),
                 email = faker.internet().emailAddress(),
                 phoneNumber = faker.phoneNumber().subscriberNumber(10),
                 address = faker.address().fullAddress(),
+                day = String.format("%02d",faker.number().numberBetween(1,31)),
+                year = String.valueOf(faker.number().numberBetween(1970, 2022)),
+                month = "July",
                 gender = "Male",
                 subject = "history",
                 hobbies = "Reading",
@@ -22,13 +29,14 @@ public class RegistrationFormWithFaker extends TestBase {
                 city = "Gurgaon",
                 photo = "1.jpg";
 
-     registrationFormPage.openPage()
+
+        registrationFormPage.openPage()
             .setFirstName(userName)
             .setLastName(userLastName)
             .setEmail(email)
             .setGender(gender)
             .setPhoneNumber(phoneNumber)
-            .setBirthDate("10", "May", "1990")
+            .setBirthDate(day, month, year)
             .setSubject(subject)
             .setHobbie(hobbies)
             .uploadPhoto(photo)
@@ -42,10 +50,10 @@ public class RegistrationFormWithFaker extends TestBase {
              .verifyResults("Student Email", email)
              .verifyResults("Gender", gender)
              .verifyResults("Mobile", phoneNumber)
-             .verifyResults("Date of Birth", "10 May,1990")
+             .verifyResults("Date of Birth", day + " " + month + "," + year)
              .verifyResults("Subjects", subject)
              .verifyResults("Hobbies", hobbies)
-             .verifyResults("Picture", "1.jpg")
+             .verifyResults("Picture", photo)
              .verifyResults("Address", address)
              .verifyResults("State and City", state + " " + city);
     }
