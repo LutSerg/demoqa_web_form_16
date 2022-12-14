@@ -1,28 +1,23 @@
-package qa.asteroster;
+package qa.asteroster.tests;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
-import qa.asteroster.tests.TestBase;
 
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-
-public class RegistrationForm extends TestBase {
+public class RegistrationFormWithFaker extends TestBase {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
     @Test
     void registrationFormTest() {
-        String userName = "Bilbo",
-                userLastName = "Baggins",
-                email = "hobbit@shire.nz",
+        Faker faker = new Faker();
+        String userName = faker.name().firstName(),
+                userLastName = faker.name().lastName(),
+                email = faker.internet().emailAddress(),
+                phoneNumber = faker.phoneNumber().subscriberNumber(10),
+                address = faker.address().fullAddress(),
                 gender = "Male",
-                phoneNumber = "9998887755",
                 subject = "history",
                 hobbies = "Reading",
-                address = "Some text for some address",
                 state = "NCR",
                 city = "Gurgaon",
                 photo = "1.jpg";
